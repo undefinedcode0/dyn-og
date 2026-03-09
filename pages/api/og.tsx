@@ -7,9 +7,9 @@ export const config = {
 
 export default async function handler(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const title = searchParams.get("title") || "[{-_-}] ZZZzz zz z...";
+  const title = searchParams.get("title") || "anagnorisis";
 
-  const fontUrl = new URL("/Lilex-Italic.ttf", req.url);
+  const fontUrl = new URL("/geistmono.woff2", req.url);
   const font = await fetch(fontUrl).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
@@ -20,127 +20,76 @@ export default async function handler(req: NextRequest) {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          background: "#2463EB",
-          position: "relative",
-          overflow: "hidden",
-          padding: 80,
-          gap: "40px",
+          justifyContent: "space-between",
+          background: "#0a0a0a",
+          padding: "64px 80px",
+          fontFamily: "monospace",
         }}
       >
+        {/* top bar */}
         <div
           style={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <div
-            style={{
-              fontSize: 40,
-              fontWeight: 500,
-              color: "#FBF7EC",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <span style={{ opacity: 0.4 }}>[</span>
-            <span>enochlau.com</span>
-            <span style={{ opacity: 0.4 }}>]</span>
+          <div style={{ display: "flex", gap: 32 }}>
+            {["home", "about", "writing"].map((item) => (
+              <span
+                key={item}
+                style={{ fontSize: 24, color: "#666", letterSpacing: "0.05em" }}
+              >
+                {item}
+              </span>
+            ))}
           </div>
-          <div style={{ display: "flex", gap: 20 }}>
-            <div
-              style={{
-                display: "flex",
-                clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
-              }}
-            >
-              <div
-                style={{
-                  width: 120,
-                  height: 24,
-                  opacity: 0.2,
-                  background:
-                    "repeating-linear-gradient(-45deg, #FBF7EC, #FBF7EC 7px, transparent 7px, transparent 14px)",
-                }}
-              />
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
-              }}
-            >
-              <div
-                style={{
-                  width: 120,
-                  height: 48,
-                  opacity: 0.4,
-                  background:
-                    "repeating-linear-gradient(-45deg, #FBF7EC, #FBF7EC 7px, transparent 7px, transparent 14px)",
-                }}
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
-              }}
-            >
-              <div
-                style={{
-                  width: 120,
-                  height: 72,
-                  opacity: 0.6,
-                  background:
-                    "repeating-linear-gradient(-45deg, #FBF7EC, #FBF7EC 7px, transparent 7px, transparent 14px)",
-                }}
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
-              }}
-            >
-              <div
-                style={{
-                  width: 120,
-                  height: 96,
-                  opacity: 0.8,
-                  background:
-                    "repeating-linear-gradient(-45deg, #FBF7EC, #FBF7EC 7px, transparent 7px, transparent 14px)",
-                }}
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
-              }}
-            >
-              <div
-                style={{
-                  width: 120,
-                  height: 120,
-                  background:
-                    "repeating-linear-gradient(-45deg, #FBF7EC, #FBF7EC 7px, transparent 7px, transparent 14px)",
-                }}
-              />
-            </div>
-          </div>
+          <span style={{ fontSize: 24, color: "#333" }}>
+            undefinedcode.pages.dev
+          </span>
         </div>
+
+        {/* divider */}
         <div
           style={{
-            fontSize: 72,
-            lineHeight: 1.3,
-            fontWeight: 400,
-            color: "#FBF7EC",
             display: "flex",
+            width: "100%",
+            height: "1px",
+            background: "repeating-linear-gradient(90deg, #333 0px, #333 6px, transparent 6px, transparent 12px)",
+          }}
+        />
+
+        {/* title */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
           }}
         >
-          <span>{title}</span>
+          <span style={{ fontSize: 28, color: "#444" }}>//</span>
+          <span
+            style={{
+              fontSize: 72,
+              color: "#e0e0e0",
+              lineHeight: 1.2,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            {title}
+          </span>
         </div>
+
+        {/* bottom divider */}
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: "1px",
+            background: "repeating-linear-gradient(90deg, #333 0px, #333 6px, transparent 6px, transparent 12px)",
+          }}
+        />
       </div>
     ),
     {
@@ -148,7 +97,7 @@ export default async function handler(req: NextRequest) {
       height: 630,
       fonts: [
         {
-          name: "Sentient",
+          name: "monospace",
           data: font,
           style: "normal",
           weight: 400,
