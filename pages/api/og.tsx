@@ -25,58 +25,26 @@ export default async function handler(req: NextRequest) {
         fontFamily: 'monospace',
       }}
     >
-      {/* top bar */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+      {/* top */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
         <span style={{ fontSize: 24, color: '#666' }}>undefinedcode.pages.dev</span>
-      </div>
-
-      {/* divider */}
-      <div
-        style={{
-          display: 'flex',
-          width: '100%',
-          height: '1px',
-          background: 'repeating-linear-gradient(90deg, #333 0px, #333 6px, transparent 6px, transparent 12px)',
-        }}
-      />
-
-      {/* title */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 16,
-        }}
-      >
-        <span style={{ fontSize: 60, color: '#444' }}>//</span>
-        <span
+        <div
           style={{
-            fontSize: 60,
-            color: '#e0e0e0',
-            lineHeight: 1.2,
-            letterSpacing: '-0.02em',
+            display: 'flex',
+            width: '100%',
+            height: '1px',
+            background: 'repeating-linear-gradient(90deg, #999 0px, #999 6px, transparent 6px, transparent 12px)',
           }}
-        >
-          {title}
-        </span>
+        />
       </div>
 
-      {/* bottom divider */}
-      <div
-        style={{
-          display: 'flex',
-          width: '100%',
-          height: '1px',
-          background: 'repeating-linear-gradient(90deg, #333 0px, #333 6px, transparent 6px, transparent 12px)',
-        }}
-      />
+      {/* bottom */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: '300px' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', gap: 16 }}>
+          <span style={{ fontSize: 60, color: '#444' }}>//</span>
+          <span style={{ fontSize: 60, color: '#e0e0e0', lineHeight: 1.2, letterSpacing: '-0.02em' }}>{title}</span>
+        </div>
+      </div>
     </div>,
     {
       width: 1200,
